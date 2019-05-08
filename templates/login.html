@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Register</h1>
+<style>
+    .error {
+        color: red;
+    }
+</style>
+<form action="/register" method="post">
+    <table>
+        <tr>
+            <td><label for="email">Email(optional)</label></td>
+            <td>
+                <input name="email" type="text" value="{{ email }}">
+                {% if errm %}
+                    <i class="error">{{ errm_mssg }}</i>
+                {% endif %}
+            </td>
+        </tr>
+            <td><label for="username">Username</label></td>
+            <td>
+                <input name="username" type="text">
+                {% if erru %}
+                    <i class="error">{{ erru_mssg }}</i>
+                {% endif %}
+            </td>
+        <tr>
+            <td><label for="password">Password</label></td>
+            <td>
+                <input name="password" type="password">
+                {% if errv %}
+                    <i class="error">{{ err_mssg }}</i>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td><label for="verify">Verify Password</label></td>
+            <td>
+                <input name="verify" type="password">
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Register">
+</form>
+{% endblock %}
