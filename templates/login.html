@@ -20,7 +20,7 @@
         </tr>
             <td><label for="username">Username</label></td>
             <td>
-                <input name="username" type="text">
+                <input name="username" value="{{username}}"  type="text">
                 {% if erru %}
                     <i class="error">{{ erru_mssg }}</i>
                 {% endif %}

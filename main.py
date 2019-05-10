@@ -21,11 +21,16 @@ def register():
     email = request.form['email']
     if ver != password:
         erv = True
-        return render_template('login.html' , errv=erv , err_mssg="Password does not match!")
+        return render_template('login.html' , errv=erv, username=username , err_mssg="Password does not match!")
+
+    elif len(password) < 3 or len(password) > 20:
+        erv =True
+        return render_template('login.html' , errv=erv , username=username, err_mssg="Password must be between 3 and 20 characters.")
+
 
     elif password is None or password == "":
         erv = True
-        return render_template('login.html' , errv=erv , err_mssg="Must have a password!")
+        return render_template('login.html' , errv=erv , username=username , err_mssg="Must have a password!")
 
     elif password == username:
         erv = True
@@ -52,13 +57,13 @@ def register():
                 counta+=1
                 if counta > 1:
                     erm = True
-                    return render_template('login.html' , errm=erm , errm_mssg="Email cannot contain more than one @")
+                    return render_template('login.html' , username=username , errm=erm , errm_mssg="Email cannot contain more than one @")
 
             if char == '.':
                 countdot+=1
                 if countdot > 1:
                     erm = True
-                    return render_template('login.html' , errm=erm , errm_mssg="Email cannot contain more than one .")
+                    return render_template('login.html' , username=username , errm=erm , errm_mssg="Email cannot contain more than one .")
         if counta < 1 or countdot < 1:
             erm = True
             return render_template('login.html' , errm=erm , errm_mssg="Email must have one @ and one .")
